@@ -1,0 +1,12 @@
+**/dist
+**/coverage
+**/.nyc_output
+.github
+.all-contributorsrc
+.cache
+.nyc_output
+.next
+CONTRIBUTORS.md
+CHANGELOG.md
+.stryker-tmp
+/reports/
