@@ -13,12 +13,25 @@ import { useExperimentSearchInput } from "@/client/google";
 export default function Home() {
 	const [selectedLaunch, setSelectedLaunch] = React.useState<Launch | null>(null);
 
+	const toggleSearchInput = useExperimentSearchInput();
+	const [searchInput, setSearchInput] = React.useState("");
 
 	return (
 		<div className="flex min-h-screen flex-col items-center justify-center py-2 dark:bg-slate-800 dark:text-white">
 			<div className="flex w-full flex-1 flex-col items-center justify-center gap-5 px-20 pt-5 text-center">
 				<h1 className="text-4xl font-bold">SpaceX Launches</h1>
 
+				{toggleSearchInput && (
+					<div className="flex">
+						<input
+							className="flex-1 rounded-md border border-gray-300 px-4 py-2 dark:border-gray-700 dark:bg-slate-700 dark:text-white"
+							type="text"
+							placeholder="Search for a launch"
+							value={searchInput}
+							onChange={(e) => setSearchInput(e.target.value)}
+						/>
+					</div>
+				)}
 
 				<div className="flex w-full flex-1 flex-row items-start justify-center gap-4 px-20 text-center">
 					<PastLaunches
@@ -55,13 +68,20 @@ export default function Home() {
 }
 
 function PastLaunches({
+	searchInput,
 	selectedLaunch,
 	setSelectedLaunch,
 }: {
+	searchInput: string;
 	selectedLaunch: Launch | null;
 	setSelectedLaunch: (launch: Launch | null) => void;
 }) {
 	const { data: launches } = useQuery(["past"], () => SpaceX.getPastLaunches());
+	const pastLaunches = launches?.ok
+		? SpaceX.sortLaunchesReverseChronologically(SpaceX.filterLaunchesSearch(launches.data, searchInput))
+		: [];
+
+	console.log(selectedLaunch?.id);
 
 	return (
 		<div className="flex w-1/2 flex-col items-center justify-start gap-2">
@@ -85,13 +105,18 @@ function PastLaunches({
 }
 
 function UpcomingLaunches({
+	searchInput,
 	selectedLaunch,
 	setSelectedLaunch,
 }: {
+	searchInput: string;
 	selectedLaunch: Launch | null;
 	setSelectedLaunch: (launch: Launch | null) => void;
 }) {
 	const { data: launches } = useQuery(["upcomming"], () => SpaceX.getUpcomingLaunches());
+	const upcommingLaunches = launches?.ok
+		? SpaceX.sortLaunchesChronologically(SpaceX.filterLaunchesSearch(launches.data, searchInput))
+		: [];
 
 	return (
 		<div className="flex w-1/2 flex-col items-center justify-start gap-2">

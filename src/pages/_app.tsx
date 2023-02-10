@@ -15,9 +15,10 @@ export default function App({ Component, pageProps }: AppProps) {
 	return (
 		<main className={fontInter.className}>
 			<Head>
-				<title>SpaceX API</title>
+				<title>SpaceX Launches</title>
 				<meta content="width=device-width, initial-scale=1" name="viewport" />
 				<link rel="icon" href="/favicon.ico" />
+				<script async src="https://www.googleoptimize.com/optimize.js?id=OPT-KTW99F9"></script>
 			</Head>
 
 			<QueryClientProvider client={queryClient}>
