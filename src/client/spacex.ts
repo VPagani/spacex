@@ -1,5 +1,5 @@
 import type { Result } from "@/types/result";
-import type { Launch, Launches } from "@/services/spacex";
+import type { Launch, Launches } from "@/server/spacex";
 
 export { Launch, Launches };
 

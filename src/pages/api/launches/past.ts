@@ -1,4 +1,4 @@
-import { getPastLaunches } from "@/services/spacex";
+import { getPastLaunches } from "@/server/spacex";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {

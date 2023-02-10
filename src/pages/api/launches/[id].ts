@@ -1,4 +1,4 @@
-import { getLaunch } from "@/services/spacex";
+import { getLaunch } from "@/server/spacex";
 import type { NextApiRequest, NextApiResponse } from "next";
 import * as z from "zod";
 
