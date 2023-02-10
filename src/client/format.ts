@@ -1,5 +1,5 @@
-export function formatDate(date: Date) {
-	const formatter = new Intl.DateTimeFormat(navigator.languages[0] ?? navigator.language, {
+export function formatDate(date: Date, language = navigator.languages[0] ?? navigator.language) {
+	const formatter = new Intl.DateTimeFormat(language, {
 		year: "numeric",
 		month: "long",
 		day: "numeric",
@@ -8,6 +8,6 @@ export function formatDate(date: Date) {
 	return formatter.format(date);
 }
 
-export function formatUnixTimestamp(timestamp: number) {
-	return formatDate(new Date(timestamp * 1000));
+export function formatUnixTimestamp(timestamp: number, language?: string) {
+	return formatDate(new Date(timestamp * 1000), language);
 }
