@@ -1,7 +1,7 @@
 import * as React from "react";
 
 interface GoogleOptimize {
-	get: (experimentId: string) => number;
+	get: (experimentId: string) => string;
 }
 
 declare global {
@@ -11,8 +11,8 @@ declare global {
 	}
 }
 
-export function useExperiment(experimentId: string): number {
-	const [variant, setVariant] = React.useState<number>(0);
+export function useExperiment(experimentId: string): string {
+	const [variant, setVariant] = React.useState<string>("0");
 
 	React.useEffect(() => {
 		(async () => {
@@ -37,5 +37,5 @@ export function useExperiment(experimentId: string): number {
 export function useExperimentSearchInput(): boolean {
 	const variant = useExperiment("oX6wVLxTRryCffOMVagcwg");
 
-	return variant === 1;
+	return variant === "1";
 }
