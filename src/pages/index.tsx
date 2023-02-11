@@ -19,7 +19,7 @@ export default function Home() {
 
 	return (
 		<>
-			<Script async src="https://www.googleoptimize.com/optimize.js?id=OPT-KTW99F9" />
+			<GoogleSetup />
 
 			<div className="flex min-h-screen flex-col items-center justify-center py-2 dark:bg-slate-800 dark:text-white">
 				<div className="flex w-full flex-1 flex-col items-center justify-center gap-5 px-20 pt-5 text-center">
@@ -55,21 +55,26 @@ export default function Home() {
 			</div>
 		</>
 	);
+}
 
-	/*
+export function GoogleSetup() {
+	React.useEffect(() => {
+		const dataLayer = (window.dataLayer = window.dataLayer ?? []);
+
+		function gtag(...args: unknown[]) {
+			dataLayer.push(args);
+		}
+
+		gtag("js", new Date());
+		gtag("config", "G-JNW55GWE94");
+	}, []);
 
 	return (
-		<div className="flex flex-col items-center min-h-screen gap-10 pt-10">
-			<h1 className="text-4xl font-bold text-center">SpaceX Launches</h1>
-
-			<div className="flex flex-row items-start justify-center w-screen max-w-7xl py-2 px-8 gap-8">
-				<PastLaunches />
-				<UpcomingLaunches />
-			</div>
-		</div>
+		<>
+			<Script async src="https://www.googleoptimize.com/optimize.js?id=OPT-KTW99F9" />
+			<Script async src="https://www.googletagmanager.com/gtag/js?id=G-JNW55GWE94" />
+		</>
 	);
-
-	*/
 }
 
 function PastLaunches({

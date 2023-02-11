@@ -1,21 +1,17 @@
 import * as React from "react";
 
-interface DataLayer {
-	push: (event: { event: string }) => Promise<void>;
-}
-
 interface GoogleOptimize {
 	get: (experimentId: string) => number;
 }
 
 declare global {
 	interface Window {
-		dataLayer?: DataLayer;
+		dataLayer?: unknown[];
 		google_optimize?: GoogleOptimize;
 	}
 }
 
-export function useExperiment(experimentId: string) {
+export function useExperiment(experimentId: string): number {
 	const [variant, setVariant] = React.useState<number>(0);
 
 	React.useEffect(() => {
@@ -38,7 +34,7 @@ export function useExperiment(experimentId: string) {
 	return variant;
 }
 
-export function useExperimentSearchInput() {
+export function useExperimentSearchInput(): boolean {
 	const variant = useExperiment("oX6wVLxTRryCffOMVagcwg");
 
 	return variant === 1;
