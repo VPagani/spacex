@@ -1,0 +1,13 @@
+# SpaceX Launches API
+
+### Past Launches
+GET http://localhost:3000/api/launches/past
+
+### Upcoming Launches
+GET http://localhost:3000/api/launches/upcoming
+
+### Latest Launch
+GET http://localhost:3000/api/launches/latest
+
+### Next Launch
+GET http://localhost:3000/api/launches/next
