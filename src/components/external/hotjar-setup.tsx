@@ -5,7 +5,6 @@ export default function HotjarSetup() {
 		<>
 			<Script
 				id="hotjar"
-				strategy="afterInteractive"
 				dangerouslySetInnerHTML={{
 					__html: `
 				(function(h,o,t,j,a,r){
