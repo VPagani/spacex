@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import * as React from "react";
+import Script from "next/script";
 import { useQuery } from "@tanstack/react-query";
 
 import * as SpaceX from "@/client/spacex";
@@ -17,38 +18,42 @@ export default function Home() {
 	const [searchInput, setSearchInput] = React.useState("");
 
 	return (
-		<div className="flex min-h-screen flex-col items-center justify-center py-2 dark:bg-slate-800 dark:text-white">
-			<div className="flex w-full flex-1 flex-col items-center justify-center gap-5 px-20 pt-5 text-center">
-				<h1 className="text-4xl font-bold">SpaceX Launches</h1>
+		<>
+			<Script async src="https://www.googleoptimize.com/optimize.js?id=OPT-KTW99F9" />
 
-				{toggleSearchInput && (
-					<div className="flex">
-						<input
-							className="flex-1 rounded-md border border-gray-300 px-4 py-2 dark:border-gray-700 dark:bg-slate-700 dark:text-white"
-							type="text"
-							placeholder="Search for a launch"
-							value={searchInput}
-							onChange={(e) => setSearchInput(e.target.value)}
+			<div className="flex min-h-screen flex-col items-center justify-center py-2 dark:bg-slate-800 dark:text-white">
+				<div className="flex w-full flex-1 flex-col items-center justify-center gap-5 px-20 pt-5 text-center">
+					<h1 className="text-4xl font-bold">SpaceX Launches</h1>
+
+					{toggleSearchInput && (
+						<div className="flex">
+							<input
+								className="flex-1 rounded-md border border-gray-300 px-4 py-2 dark:border-gray-700 dark:bg-slate-700 dark:text-white"
+								type="text"
+								placeholder="Search for a launch"
+								value={searchInput}
+								onChange={(e) => setSearchInput(e.target.value)}
+							/>
+						</div>
+					)}
+
+					<div className="flex w-full flex-1 flex-row items-start justify-center gap-4 px-20 text-center">
+						<PastLaunches
+							searchInput={searchInput}
+							selectedLaunch={selectedLaunch}
+							setSelectedLaunch={setSelectedLaunch}
+						/>
+						<UpcomingLaunches
+							searchInput={searchInput}
+							selectedLaunch={selectedLaunch}
+							setSelectedLaunch={setSelectedLaunch}
 						/>
 					</div>
-				)}
-
-				<div className="flex w-full flex-1 flex-row items-start justify-center gap-4 px-20 text-center">
-					<PastLaunches
-						searchInput={searchInput}
-						selectedLaunch={selectedLaunch}
-						setSelectedLaunch={setSelectedLaunch}
-					/>
-					<UpcomingLaunches
-						searchInput={searchInput}
-						selectedLaunch={selectedLaunch}
-						setSelectedLaunch={setSelectedLaunch}
-					/>
 				</div>
-			</div>
 
-			{selectedLaunch && <ModalLaunch launch={selectedLaunch} onClose={() => setSelectedLaunch(null)} />}
-		</div>
+				{selectedLaunch && <ModalLaunch launch={selectedLaunch} onClose={() => setSelectedLaunch(null)} />}
+			</div>
+		</>
 	);
 
 	/*
@@ -217,7 +222,11 @@ function ModalLaunch({ launch, onClose }: { launch: Launch; onClose: () => void 
 							</div>
 							<div className="ml-auto flex h-24 w-24 flex-shrink-0">
 								{launch.links.patch.small && (
-									<img className="h-full w-full object-contain" src={launch.links.patch.small} />
+									<img
+										className="h-full w-full object-contain"
+										src={launch.links.patch.small}
+										alt=""
+									/>
 								)}
 							</div>
 						</div>
