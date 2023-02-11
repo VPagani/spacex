@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 import * as React from "react";
-import Script from "next/script";
 import { useQuery } from "@tanstack/react-query";
 
 import * as SpaceX from "@/client/spacex";
@@ -9,6 +8,10 @@ import { formatUnixTimestamp } from "@/client/format";
 
 import IconSuccess from "@/components/success";
 import IconFailure from "@/components/failure";
+
+// Third-party scripts
+import GoogleSetup from "@/components/external/google-setup";
+import HotjarSetup from "@/components/external/hotjar-setup";
 import { useExperimentSearchInput } from "@/client/google";
 
 export default function Home() {
@@ -20,6 +23,7 @@ export default function Home() {
 	return (
 		<>
 			<GoogleSetup />
+			<HotjarSetup />
 
 			<div className="flex min-h-screen flex-col items-center justify-center py-2 dark:bg-slate-800 dark:text-white">
 				<div className="flex w-full flex-1 flex-col items-center justify-center gap-5 px-20 pt-5 text-center">
@@ -57,26 +61,6 @@ export default function Home() {
 	);
 }
 
-export function GoogleSetup() {
-	React.useEffect(() => {
-		const dataLayer = (window.dataLayer = window.dataLayer ?? []);
-
-		function gtag(...args: unknown[]) {
-			dataLayer.push(args);
-		}
-
-		gtag("js", new Date());
-		gtag("config", "G-JNW55GWE94");
-	}, []);
-
-	return (
-		<>
-			<Script async src="https://www.googleoptimize.com/optimize.js?id=OPT-KTW99F9" />
-			<Script async src="https://www.googletagmanager.com/gtag/js?id=G-JNW55GWE94" />
-		</>
-	);
-}
-
 function PastLaunches({
 	searchInput,
 	selectedLaunch,
@@ -90,8 +74,6 @@ function PastLaunches({
 	const pastLaunches = launches?.ok
 		? SpaceX.sortLaunchesReverseChronologically(SpaceX.filterLaunchesSearch(launches.data, searchInput))
 		: [];
-
-	console.log(selectedLaunch?.id);
 
 	return (
 		<div className="flex w-1/2 flex-col items-center justify-start gap-2">
