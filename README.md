@@ -2,13 +2,11 @@
 
 <small>[Português 🇧🇷](README.pt-BR.md)</small>
 
-<h1 style="display: inline-flex; gap: 10px"><img src="./public/favicon.ico" width="40px" /> SpaceX Launches</h1>
+<h1><img src="./public/favicon.ico" width="20px" /> SpaceX Launches</h1>
 
 Coding assignment by Callix
 
 </div>
-
----
 
 ## Running the project
 
@@ -24,7 +22,7 @@ Run the NextJS dev server:
 pnpm dev
 ```
 
----
+Go to http://localhost:3000
 
 ## [Backend (API)](./src/pages/api)
 

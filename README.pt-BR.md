@@ -2,13 +2,11 @@
 
 <small>[English](README.md)</small>
 
-<h1 style="display: inline-flex; gap: 10px"><img src="./public/favicon.ico" width="40px" /> SpaceX Launches</h1>
+<h1><img src="./public/favicon.ico" width="20px" /> SpaceX Launches</h1>
 
 Desafio técnico da Callix
 
 </div>
-
----
 
 ## Iniciar o projeto
 
@@ -25,8 +23,6 @@ pnpm dev
 ```
 
 Acesse http://localhost:3000
-
----
 
 ## [Backend (API)](./src/pages/api)
 
