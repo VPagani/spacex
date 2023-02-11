@@ -25,7 +25,7 @@ export default function Home() {
 			<GoogleSetup />
 			<HotjarSetup />
 
-			<div className="flex min-h-screen flex-col items-center justify-center py-2 dark:bg-slate-800 dark:text-white">
+			<div className="flex min-h-screen flex-col items-center justify-center bg-gray-200 py-2 dark:bg-slate-800 dark:text-white">
 				<div className="flex w-full flex-1 flex-col items-center justify-center gap-5 px-20 pt-5 text-center">
 					<h1 className="text-4xl font-bold">SpaceX Launches</h1>
 
